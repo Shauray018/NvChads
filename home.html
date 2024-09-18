@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Animated</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/b04ee4730a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="main">
+        <!------------------page 1---------------------->
+        <div data-scroll data-scroll-speed="-5" id="page1">
+            <nav>
+
+                <div class="flex gap-2 justify-center items-center">
+                    <img src="./image1.png" class="w-10"/>
+                    <h1 id="head-one" class="tracking-wide">BLOCKCHADS</h1>
+                </div>
+               
+                <div id="right-nav">
+                 
+                    <button>
+                        <a href="https://www.github.com" target="_blank" style="text-decoration: none; color: inherit;">GitHub</a>
+                     </button>
+                     
+              
+                </div>
+            </nav>
+            <div class="bottom-page1">
+                <h1>Blockchain explorer, analytics and web services</h1>
+                <div class="bottom-page1-inner w-full absolute">
+                    <h4>Identify the end receiver of a cryptocurrency transaction</h4>
+                    
+                    <form id="searchForm" class="flex items-center absolute w-full px-4 py-2 bg-white rounded-full shadow-lg" onsubmit="event.preventDefault(); trace(this[0].value)">
+                        <!-- Search Icon -->
+                   
+                    
+                        <!-- Input Field -->
+                        <div class="relative flex-1">
+                            <input type="text" id="hero-field" name="hero-field" 
+                                   class="w-full bg-gray-100 text-gray-900 rounded-full py-2 pl-10 pr-4 leading-8 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                   placeholder="Search addresses, transactions and blocks" required>
+                        </div>
+                    
+                        <!-- Search Button -->
+                        <button type="submit" class="ml-4 bg-indigo-500 text-white py-2 px-6 rounded-full hover:bg-indigo-600 focus:outline-none transition duration-300 ease-in-out">
+                            Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+          <!----https://thisismagma.com/wp-content/themes/magma/assets/home/hero/1.mp4?2 or ./media/video1.mp4 -->
+            <video src="./media/video1.mp4" autoplay loop muted></video>
+
+
+        </div>
+
+        
+
+    </div>
+
+    <div id="ui" class="container row"></div>
+		<div class="card minimal col s4">
+			<div class="card-action row">
+				<form onsubmit="event.preventDefault(); trace(this[0].value)">
+					<div class="input-field col s10">
+						<input placeholder="Address/Transaction Hash" id="hash" type="text" value="1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F">
+					</div>
+					<button class="btn waves-effect waves-light col s2" type="submit" name="action" style="transform: scale(1.2) translate(1px, 2px)"><i class="material-icons">arrow_forward</i></button>
+				</form>
+			</div>
+		</div>
+
+		<div class="col s1"></div>
+
+		<div class="card minimal col s6">
+			<div class="card-action row">
+				<div class="input-field col s2">
+					<select onchange="updateFillStyle(parseInt(this.value))">
+						<option value="0">Distance</option>
+						<option value="1">Mono</option>
+						<option value="2">Poison</option>
+						<option value="3">Haircut</option>
+						<option value="4">FIFO</option>
+					</select>
+					<label style="position: absolute; top: -3em">Colour</label>
+				</div>
+
+				<div class="input-field col s3">
+					<input type="text" class="datepicker" value="2000/01/01" onchange="dateMin = new Date(this.value).getTime()/1000">
+					<label style="position: absolute; top: -0.6em">From</label>
+				</div>
+
+				<div class="input-field col s3">
+					<input type="text" class="datepicker" value="3000/01/01" onchange="dateMax = new Date(this.value).getTime()/1000">
+					<label style="position: absolute; top: -0.6em">To</label>
+				</div>
+
+				<div class="switch col s2">
+					<label>
+						Invert<br/><br/>
+						<input type="checkbox" checked onchange="document.getElementsByTagName('body')[0].style.background = !this.checked ? 'white' : 'black'" />
+						<span class="lever"></span>
+					</label>
+				</div>
+
+				<div class="switch col s2">
+					<label>
+						Run<br/><br/>
+						<input type="checkbox" checked onchange="this.checked ? simulation.velocityDecay(0.97) : simulation.velocityDecay(1)" />
+						<span class="lever"></span>
+					</label>
+				</div>
+			</div>
+		</div>
+		<!-- Dropdown Trigger -->
+		<a class='dropdown-trigger btn-flat col s1' href='#' data-target='dropdown'><i class="material-icons" style="color: #aaa; font-size: 3em; margin-top: 0.3em">more_vert</i></a>
+	</div>
+
+	<svg id="canvas"></svg>
+
+	<div id="tooltip" class="card">
+		<div class="card-content">
+			<h6 id="tooltip-title">Unknown</h6>
+			<p id="tooltip-value">Unknown</p>
+		</div>
+		<div class="card-tabs">
+			<ul class="tabs tabs-fixed-width">
+				<li class="tab"><a href="#tooltip-all" class="active"><span id="tooltip-allcount"></span> Total</a></li>
+				<li class="tab"><a href="#tooltip-in"><span id="tooltip-incount"></span> Incoming</a></li>
+				<li class="tab"><a href="#tooltip-out"><span id="tooltip-outcount"></span> Outgoing</a></li>
+			</ul>
+		</div>
+		<div class="card-content grey lighten-4" id="tooltip-body">
+			<div id="tooltip-log"></div>
+		</div>
+	</div>
+
+	<!-- Dropdown Structure -->
+	<ul id='dropdown' class='dropdown-content'>
+		<li><a href="javascript:copyToClipboard(window.location); M.toast({html: 'Copied to Clipboard'})">Share<i class="material-icons left">share</i></a></li>
+		<li><a href="javascript:saveSvg(document.getElementById('canvas'), 'graph.svg')">Graph<i class="material-icons left">file_download</i></a></li>
+		<li><a href="javascript:saveText(JSON.stringify([nodes, links]), 'data.json');">Data<i class="material-icons left">file_download</i></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a href="https://mattconsto.github.io/blockchain-tracer/report.pdf" target="_blank">Report<i class="material-icons left">launch</i></a></li>
+		<li><a href="#modal-help" class="modal-trigger">Help<i class="material-icons left">help_outline</i></a></li>
+		<li><a href="#modal-about" class="modal-trigger">About<i class="material-icons left">info_outline</i></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a href="#">Close<i class="material-icons left">close</i></a></li>
+	</ul>
+
+	<div id="modal-help" class="modal">
+		<div class="modal-content">
+		<h4>Help</h4>
+		<ul class="browser-default" style="padding-left: 1.5em">
+			<li>Use your mouse to pan and zoom around the graph.</li>
+			<li>Hover over nodes to see information, click on them to explore the blockchain.</li>
+			<li>Trace a transaction by clicking on it in the popup.</li>
+			<li>Use Shift + T to toggle tooltips.</li>
+			<li>Have fun!</li>
+		</ul>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+		</div>
+	</div>
+
+	<div id="modal-about" class="modal">
+		<div class="modal-content">
+		<h4>About</h4>
+		<p>Created by <a href="https://consto.uk">Matthew Consterdine</a>, Dennis Parkchov, and Altay Adademir for Computational Finance at the <a href="https://southampton.ac.uk">University of Southampton</a>.</p>
+		<p>Powered by <a href="https://blockchain.info">Blockchain.info and <a href="https://d3js.org">D3.js</a>.</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+		</div>
+	</div>
+
+    <!------------------script---------------------->
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // prevent the form from submitting the traditional way
+            const hash = document.getElementById('hero-field').value;
+            if (hash) {
+                // Redirect to results.html with the hash as a query parameter
+                window.location.href = `results.html?hash=${(hash)}`;
+            }
+        });
+    </script>   
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js" integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSlPQK6+aWhlMZcHzkasCSlnWoe+TJuudlka1/IQ01Dnhgq95g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollTrigger.min.js" integrity="sha512-IHDCHrefnBT3vOCsvdkMvJF/MCPz/nBauQLzJkupa4Gn4tYg5a6VGyzIrjo6QAUy3We5HFOZUlkUpP0dkgE60A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="scripts/blockchain.js"></script>
+    <script src="scripts/libs/d3.v4.min.js"></script>
+	<script src="scripts/libs/materialize.min.js"></script>
+	<script src="scripts/graph.js"></script>
+	<script src="scripts/tags.json"></script>
+	<script src="scripts/init.js"></script>
+    <script src="script.js"></script>
+    
+    
+    
+</body>
+</html>
+

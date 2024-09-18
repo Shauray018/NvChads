@@ -1,0 +1,156 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    z-index: 9999;
+  }
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+  #main{
+      position: relative;
+      overflow: hidden;
+      background-color: rgb(8, 8, 16);
+  }
+
+  /*--------------------page 1 ------------*/
+  #page1
+  {
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+  }
+  #page1>video{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+  }
+  #head-one{
+    
+    font-weight: 900;
+    color: white;
+  }
+  #page1>nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0px 30px;
+      position: absolute;
+      height: 10vh;
+      width: 100vw;
+  }
+  /*--------------------my logo ------------*/
+  #page1>nav>img{ 
+      width: 11%;
+      mix-blend-mode: lighten;
+  }
+  #right-nav>button{
+      padding: 10px 20px;
+      border-radius: 50px;
+      background-color: #0b48ed;
+      border: 1px solid #fff;
+      color: #fff;
+
+      font-size: 14px;
+  }
+  .bottom-page1{
+      position: absolute;
+      bottom: 25%;
+      height: 35vh;
+      width: 50vw;
+      left: 10%;
+  }
+  .bottom-page1>h1{
+    font-family: "Montserrat", sans-serif;
+      font-size: 5vw;
+      font-weight: 500;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 150%;
+      margin-top: -15%;
+      text-shadow: -5px -5px 5px rgb(40, 40, 31);
+  }
+
+  .bottom-page1-inner{
+      position: absolute;
+      bottom: 0%;
+      height: 35%;
+      width: 100%;
+  }
+  .bottom-page1-inner{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   
+  }
+  .bottom-page1-inner>button{
+      padding: 8px 20px;
+      border: none;
+      border-radius: 50px;
+      background-color: #fff;
+      color: #0b48ed;
+      font-size: 16px;
+      font-family: b;
+      margin-right: 25%;
+      margin-left: 1%;
+      margin-top: -10%;
+  }
+  .bottom-page1-inner>h4{
+    font-family: "Montserrat", sans-serif;
+      font-size: 1.3vw;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 25%;
+      margin-top: -5;
+  }
+
+
+nav .fas{
+    display: none;
+}
+@media only screen and (max-width : 600px){
+    #page1>nav>img{ 
+        width: 19%;
+        mix-blend-mode: lighten;
+    }
+    .bottom-page1>h1{
+        font-family: a;
+        font-size: 6vw;
+        font-weight: 100;
+        line-height: 1;
+        color: #fff;
+        margin-bottom: 200%;
+        margin-top: -40%;
+        margin-left: -15%;
+    }
+    .bottom-page1-inner>h4{
+        font-size: 12px;
+        font-weight: 100;
+        color: #fff;
+        margin-bottom: 120%;
+        margin-top: -5;
+        margin-left: -15%;
+    }
+    .bottom-page1-inner>button{
+        padding:.2rem 1.5rem ;
+        margin-bottom: -15%;
+    }
+    .right9-center{
+        height: 30%;
+    }
+    .right10-inner>h1{
+        font-size: 3vw;
+        margin-top: -20%;
+    }
+    .right10-inner>p{
+        margin-top: 0%;
+        font-size: 2vw;
+    }
+
+
+
+
+}
