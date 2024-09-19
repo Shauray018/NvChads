@@ -247,6 +247,10 @@ var trace = function(hash) {
 		console.error("Error", status)
 		M.toast({html: "Error:" + status, displayLength: Infinity})
 	})
+
+	document.getElementById('page1').classList.remove('active');
+    document.getElementById('page2').classList.add('active');
+	
 	return false
 }
 
