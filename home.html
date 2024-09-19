@@ -11,77 +11,227 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+<style>
+	/* Basic styles */
+	.page {
+		display: none;
+	}
+	.active {
+		display: block;
+	}
+</style>
+<link rel="stylesheet" href="scripts/libs/materialize.min.css">
+	<link rel="stylesheet" href="scripts/libs/icons.css">
+	<style>
+		body {overflow: hidden; background: #ffff; font-size: .75em}
 
+		input {font-size: 1.25em !important}
+
+		#ui {position: absolute; top: 2em; left: 0; right: 0; z-index: 1000; opacity: 0.9}
+
+		@media (max-width: 800px) {
+			#ui {min-width: 90%}
+		}
+		@media (max-width: 1200px) {
+			#ui {min-width: 80%}
+		}
+
+		.card.minimal {padding: 0}
+		.card.minimal > * {background: none; padding: 0; margin: 0}
+		.card.minimal > * .input-field, .card.minimal * > .range-field {margin: 0}
+		.card.minimal > * .input-field > input, .card.minimal > * .input-field > .select-wrapper > input {margin-bottom: 0; border-bottom: 0}
+		.card.minimal > * .range-field > input {margin-top: 1.25em}
+		.card.minimal > * .btn {height: 100%; transform: scale(1.5)}
+		.card.minimal > * .range-field > label, .card.minimal > * .switch > label {position: absolute; top: -2em}
+
+		.row .col {padding: 0 .25rem}
+
+		#canvas {overflow: visible !important}
+
+		#tooltip {position: absolute; display: none; max-width: 400px;}
+		#tooltip > * {padding: 12px}
+		#tooltip-body {overflow:auto; max-height: 300px;}
+
+		.switch label .lever {margin: 0}
+
+		#dropdown * {font-size: 1.1em !important}
+		#dropdown i {margin: 0 !important}
+
+		.dropdown-content {width: fit-content !important; height: auto !important; margin-top: 3em}
+		#toast-container {top: auto; bottom: 2%; left: 0; right: 0; margin: auto; max-width: fit-content}
+	</style>
+	    <style>
+		
+			body {
+				background-image: url('bg.png'); /* Replace with the actual path of your background image */
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				font-size: 0.9em;
+				color: white; /* White text for readability */
+				text-align: center;
+				font-family: 'Roboto', sans-serif;
+				
+    overflow: auto;
+}
+
+				
+			
+			
+	
+			/* Style the heading */
+		
+	
+			
+	
+			
+			/* Filter options row (color, from, to, etc.) */
+			#filter-options {
+				width: 80%;
+				margin: 20px auto;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+	
+			#filter-options .input-field input {
+				color: white;
+				background-color: #1E1E1E;
+				border: 1px solid #000000;
+				border-radius: 5px;
+				padding: 5px;
+			}
+	
+			#filter-options label {
+				color: white;
+			}
+	
+			/* Box for the graph */
+			#graph-container {
+				background-color: #e1e1df; /* Dark gray container */
+				width: 80%;
+				margin: 0 auto;
+				padding: 20px;
+				border-radius: 8px; /* Rounded corners */
+				box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Shadow effect */
+				overflow: hidden;
+			}
+	
+			/* Center the graph container */
+			#canvas {
+				width: 100%;
+				height: 600px; /* Set height for the graph */
+				overflow: hidden;
+				
+			}
+	
+			
+			
+	
+			.card {
+				background-color: #1E1E1E; /* Dark gray */
+				color: white;
+			}
+	
+			.modal {
+				background-color: #1E1E1E;
+				color: white;
+			}
+	
+			/* Button colors */
+			.btn {
+				background-color: #000000;
+			}
+	
+			.btn:hover {
+				background-color: #000000;
+			}
+	
+		</style>
+	
 </head>
-<body>
-    <div id="main">
-        <!------------------page 1---------------------->
-        <div data-scroll data-scroll-speed="-5" id="page1">
-            <nav>
-
-                <div class="flex gap-2 justify-center items-center">
-                    <img src="./image1.png" class="w-10"/>
-                    <h1 id="head-one" class="tracking-wide">BLOCKCHADS</h1>
-                </div>
-               
-                <div id="right-nav">
-                 
-                    <button>
-                        <a href="https://www.github.com" target="_blank" style="text-decoration: none; color: inherit;">GitHub</a>
-                     </button>
-                     
-              
-                </div>
-            </nav>
-            <div class="bottom-page1">
-                <h1>Blockchain explorer, analytics and web services</h1>
-                <div class="bottom-page1-inner w-full absolute">
-                    <h4>Identify the end receiver of a cryptocurrency transaction</h4>
-                    
-                    <form id="searchForm" class="flex items-center absolute w-full px-4 py-2 bg-white rounded-full shadow-lg" onsubmit="event.preventDefault(); trace(this[0].value)">
-                        <!-- Search Icon -->
-                   
-                    
-                        <!-- Input Field -->
-                        <div class="relative flex-1">
-                            <input type="text" id="hero-field" name="hero-field" 
-                                   class="w-full bg-gray-100 text-gray-900 rounded-full py-2 pl-10 pr-4 leading-8 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                   placeholder="Search addresses, transactions and blocks" required>
-                        </div>
-                    
-                        <!-- Search Button -->
-                        <button type="submit" class="ml-4 bg-indigo-500 text-white py-2 px-6 rounded-full hover:bg-indigo-600 focus:outline-none transition duration-300 ease-in-out">
-                            Search
-                        </button>
-                    </form>
-                </div>
-            </div>
-          <!----https://thisismagma.com/wp-content/themes/magma/assets/home/hero/1.mp4?2 or ./media/video1.mp4 -->
-            <video src="./media/video1.mp4" autoplay loop muted></video>
-
-
-        </div>
-
-        
-
-    </div>
-
-    <div id="ui" class="container row"></div>
-		<div class="card minimal col s4">
-			<div class="card-action row">
-				<form onsubmit="event.preventDefault(); trace(this[0].value)">
-					<div class="input-field col s10">
-						<input placeholder="Address/Transaction Hash" id="hash" type="text" value="1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F">
-					</div>
-					<button class="btn waves-effect waves-light col s2" type="submit" name="action" style="transform: scale(1.2) translate(1px, 2px)"><i class="material-icons">arrow_forward</i></button>
-				</form>
+	<body>
+	
+		<div data-scroll data-scroll-speed="-5" id="page1" class="page active">
+			<nav>
+				<div id="head" class="flex gap-2 justify-center items-center">
+					<img src="./image1.png" class="w-4"/>
+					<h1 id="head-one" class="tracking-wide">BLOCKCHADS</h1>
+				</div>
+				<div id="right-nav">
+					<button>
+						<a href="https://www.github.com" target="_blank" style="text-decoration: none; color: inherit;">GitHub</a>
+					</button>
+				</div>
+			</nav>
+			<div class="bottom-page1">
+				<h1>Blockchain explorer, analytics and web services</h1>
+				<div class="bottom-page1-inner w-full absolute">
+					<h4 class="tracking-wide">Identify the end receiver of a cryptocurrency transaction</h4>
+					
+					<!-- Form -->
+					<form id="userForm" class="flex items-center absolute h-15 w-full px-10 py-2 bg-white rounded-full shadow-lg" onsubmit="event.preventDefault(); trace(this[0].value)">
+						<!-- Input Field -->
+						<div class="relative flex-1">
+							<input type="text" id="hero-field" name="hero-field" 
+								class="w-full bg-gray-100 text-gray-900 rounded-full py-2 pl-10 pr-4 leading-8 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500"
+								placeholder="Search addresses, transactions and blocks" required>
+						</div>
+						<!-- Search Button -->
+						
+						<!-- HTML !-->
+<button class="button-82-pushable ml-10 -mr-10" role="button" type="submit">
+	<span class="button-82-shadow"></span>
+	<span class="button-82-edge"></span>
+	<span class="button-82-front text">
+	  Search
+	</span>
+  </button>
+  
+  /* CSS */
+  
+					</form>
+				</div>
 			</div>
+			<video src="./media/video1.mp4" autoplay loop muted></video>
 		</div>
-
-		<div class="col s1"></div>
-
-		<div class="card minimal col s6">
-			<div class="card-action row">
+	
+		<!------------------page 2---------------------->
+		<div id="page2" class="page py-10">
+			
+			<a id="backButton">
+			<div id="head" class="flex gap-2 justify-center items-center -mb-6 -mt-10" >
+				<img src="./image1.png" class="w-4"/>
+				<h1 id="head-one" class="tracking-wide text-large">BLOCKCHADS</h1>
+			</div>
+		</a>
+			
+			<!-- Search Bar Outside the Graph Box -->
+			<div style="display: flex; justify-content: center; align-items: center; height: 20vh;">
+				<div id="search-bar" style="width: 50%; max-width: 800px; display: flex; align-items: center;">
+					<!-- Input Field inside the form -->
+					<form onsubmit="event.preventDefault(); trace(this[0].value)" style="width: 100%; display: flex; align-items: center;">
+						<input type="text" id="hash" placeholder="Enter Address/Transaction Hash" 
+							   value="1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F" 
+							   style="width: 100%; padding: 2px 20px; border-radius: 9999px; border: 1px solid #ccc; background-color: #1E1E1E; color: white; outline: none; font-size: 1em;">
+					</form>
+				</div>
+			
+				<!-- Search Button (outside the search bar) -->
+				<button class="ml-4 bg-indigo-500 text-white py-4 px-16 rounded-full hover:bg-indigo-600 focus:outline-none transition duration-300 ease-in-out" style="font-size: 1.2em;">
+					Search
+				</button>
+			</div>
+			
+			
+			
+			
+			
+			
+		
+			<!-- Filter Options (Color, From, To, Invert, Run) -->
+			<div id="filter-options" class="container row">
 				<div class="input-field col s2">
 					<select onchange="updateFillStyle(parseInt(this.value))">
 						<option value="0">Distance</option>
@@ -92,25 +242,19 @@
 					</select>
 					<label style="position: absolute; top: -3em">Colour</label>
 				</div>
-
+		
 				<div class="input-field col s3">
 					<input type="text" class="datepicker" value="2000/01/01" onchange="dateMin = new Date(this.value).getTime()/1000">
-					<label style="position: absolute; top: -0.6em">From</label>
+					<label>From</label>
 				</div>
-
+		
 				<div class="input-field col s3">
 					<input type="text" class="datepicker" value="3000/01/01" onchange="dateMax = new Date(this.value).getTime()/1000">
-					<label style="position: absolute; top: -0.6em">To</label>
+					<label>To</label>
 				</div>
-
-				<div class="switch col s2">
-					<label>
-						Invert<br/><br/>
-						<input type="checkbox" checked onchange="document.getElementsByTagName('body')[0].style.background = !this.checked ? 'white' : 'black'" />
-						<span class="lever"></span>
-					</label>
-				</div>
-
+		
+			
+		
 				<div class="switch col s2">
 					<label>
 						Run<br/><br/>
@@ -119,81 +263,79 @@
 					</label>
 				</div>
 			</div>
-		</div>
-		<!-- Dropdown Trigger -->
-		<a class='dropdown-trigger btn-flat col s1' href='#' data-target='dropdown'><i class="material-icons" style="color: #aaa; font-size: 3em; margin-top: 0.3em">more_vert</i></a>
-	</div>
+		
+			<!-- Graph Container -->
+		
 
-	<svg id="canvas"></svg>
+		
+			<div id="graph-container">
+				<!-- Graph Visualization -->
+				<svg id="canvas"></svg>
+		
+				<!-- Tooltip -->
+				<div id="tooltip" class="card">
+					<div class="card-content">
+						<h6 id="tooltip-title">Unknown</h6>
+						<p id="tooltip-value">Unknown</p>
+					</div>
+					<div class="card-tabs">
+						<ul class="tabs tabs-fixed-width">
+							<li class="tab"><a href="#tooltip-all" class="active"><span id="tooltip-allcount"></span> Total</a></li>
+							<li class="tab"><a href="#tooltip-in"><span id="tooltip-incount"></span> Incoming</a></li>
+							<li class="tab"><a href="#tooltip-out"><span id="tooltip-outcount"></span> Outgoing</a></li>
+						</ul>
+					</div>
+					<div class="card-content grey lighten-4" id="tooltip-body">
+						<div id="tooltip-log"></div>
+					</div>
+				</div>
+			</div>
 
-	<div id="tooltip" class="card">
-		<div class="card-content">
-			<h6 id="tooltip-title">Unknown</h6>
-			<p id="tooltip-value">Unknown</p>
-		</div>
-		<div class="card-tabs">
-			<ul class="tabs tabs-fixed-width">
-				<li class="tab"><a href="#tooltip-all" class="active"><span id="tooltip-allcount"></span> Total</a></li>
-				<li class="tab"><a href="#tooltip-in"><span id="tooltip-incount"></span> Incoming</a></li>
-				<li class="tab"><a href="#tooltip-out"><span id="tooltip-outcount"></span> Outgoing</a></li>
+		
+			<!-- Dropdown Structure -->
+			<ul id='dropdown' class='dropdown-content'>
+				<li><a href="javascript:copyToClipboard(window.location); M.toast({html: 'Copied to Clipboard'})">Share<i class="material-icons left">share</i></a></li>
+				<li><a href="javascript:saveSvg(document.getElementById('canvas'), 'graph.svg')">Graph<i class="material-icons left">file_download</i></a></li>
+				<li><a href="javascript:saveText(JSON.stringify([nodes, links]), 'data.json');">Data<i class="material-icons left">file_download</i></a></li>
+				<li class="divider" tabindex="-1"></li>
+				<li><a href="https://mattconsto.github.io/blockchain-tracer/report.pdf" target="_blank">Report<i class="material-icons left">launch</i></a></li>
+				<li><a href="#modal-help" class="modal-trigger">Help<i class="material-icons left">help_outline</i></a></li>
+				<li><a href="#modal-about" class="modal-trigger">About<i class="material-icons left">info_outline</i></a></li>
+				<li class="divider" tabindex="-1"></li>
+				<li><a href="#">Close<i class="material-icons left">close</i></a></li>
 			</ul>
-		</div>
-		<div class="card-content grey lighten-4" id="tooltip-body">
-			<div id="tooltip-log"></div>
-		</div>
-	</div>
-
-	<!-- Dropdown Structure -->
-	<ul id='dropdown' class='dropdown-content'>
-		<li><a href="javascript:copyToClipboard(window.location); M.toast({html: 'Copied to Clipboard'})">Share<i class="material-icons left">share</i></a></li>
-		<li><a href="javascript:saveSvg(document.getElementById('canvas'), 'graph.svg')">Graph<i class="material-icons left">file_download</i></a></li>
-		<li><a href="javascript:saveText(JSON.stringify([nodes, links]), 'data.json');">Data<i class="material-icons left">file_download</i></a></li>
-		<li class="divider" tabindex="-1"></li>
-		<li><a href="https://mattconsto.github.io/blockchain-tracer/report.pdf" target="_blank">Report<i class="material-icons left">launch</i></a></li>
-		<li><a href="#modal-help" class="modal-trigger">Help<i class="material-icons left">help_outline</i></a></li>
-		<li><a href="#modal-about" class="modal-trigger">About<i class="material-icons left">info_outline</i></a></li>
-		<li class="divider" tabindex="-1"></li>
-		<li><a href="#">Close<i class="material-icons left">close</i></a></li>
-	</ul>
-
-	<div id="modal-help" class="modal">
-		<div class="modal-content">
-		<h4>Help</h4>
-		<ul class="browser-default" style="padding-left: 1.5em">
-			<li>Use your mouse to pan and zoom around the graph.</li>
-			<li>Hover over nodes to see information, click on them to explore the blockchain.</li>
-			<li>Trace a transaction by clicking on it in the popup.</li>
-			<li>Use Shift + T to toggle tooltips.</li>
-			<li>Have fun!</li>
-		</ul>
-		</div>
-		<div class="modal-footer">
-			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-		</div>
-	</div>
-
-	<div id="modal-about" class="modal">
-		<div class="modal-content">
-		<h4>About</h4>
-		<p>Created by <a href="https://consto.uk">Matthew Consterdine</a>, Dennis Parkchov, and Altay Adademir for Computational Finance at the <a href="https://southampton.ac.uk">University of Southampton</a>.</p>
-		<p>Powered by <a href="https://blockchain.info">Blockchain.info and <a href="https://d3js.org">D3.js</a>.</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-		</div>
-	</div>
-
-    <!------------------script---------------------->
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // prevent the form from submitting the traditional way
-            const hash = document.getElementById('hero-field').value;
-            if (hash) {
-                // Redirect to results.html with the hash as a query parameter
-                window.location.href = `results.html?hash=${(hash)}`;
-            }
-        });
-    </script>   
+	
+			</div>
+	
+	
+		<!------------------script---------------------->
+		<script>
+			// Listen for form submission
+			document.getElementById('userForm').addEventListener('submit', function (e) {
+				e.preventDefault(); // Prevent the default form submission
+				const hash = document.getElementById('hero-field').value;
+				if (hash) {
+					// Store the hash in localStorage for further use
+					localStorage.setItem('hash', hash);
+					
+					// Call the trace function to process the hash
+					trace(hash);
+					
+					// Switch to page2
+					document.getElementById('page1').classList.remove('active');
+					document.getElementById('page2').classList.add('active');
+				}
+			});
+	
+			// Function to simulate tracing the hash and rendering the result
+			
+			// Back button to go back to page 1
+			document.getElementById('backButton').addEventListener('click', function () {
+				// Switch back to page 1
+				document.getElementById('page2').classList.remove('active');
+				document.getElementById('page1').classList.add('active');
+			});
+		</script>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js" integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSlPQK6+aWhlMZcHzkasCSlnWoe+TJuudlka1/IQ01Dnhgq95g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollTrigger.min.js" integrity="sha512-IHDCHrefnBT3vOCsvdkMvJF/MCPz/nBauQLzJkupa4Gn4tYg5a6VGyzIrjo6QAUy3We5HFOZUlkUpP0dkgE60A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
