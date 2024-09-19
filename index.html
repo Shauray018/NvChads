@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Animated</title>
+    <title>BLOCKCHADS</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/b04ee4730a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="./image1.png" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 <style>
 	/* Basic styles */
 	.page {
 		display: none;
 	}
-	.active {
+	.activee {
 		display: block;
 	}
 </style>
@@ -58,7 +59,7 @@
 		#dropdown i {margin: 0 !important}
 
 		.dropdown-content {width: fit-content !important; height: auto !important; margin-top: 3em}
-		#toast-container {top: auto; bottom: 2%; left: 0; right: 0; margin: auto; max-width: fit-content}
+		#toast-container {display: none;}
 	</style>
 	    <style>
 		
@@ -153,7 +154,7 @@
 </head>
 	<body>
 	
-		<div data-scroll data-scroll-speed="-5" id="page1" class="page active">
+		<div data-scroll data-scroll-speed="-5" id="page1" class="page activee">
 			<nav>
 				<div id="head" class="flex gap-2 justify-center items-center">
 					<img src="./image1.png" class="w-4"/>
@@ -322,8 +323,8 @@
 					trace(hash);
 					
 					// Switch to page2
-					document.getElementById('page1').classList.remove('active');
-					document.getElementById('page2').classList.add('active');
+					document.getElementById('page1').classList.remove('activee');
+					document.getElementById('page2').classList.add('activee');
 				}
 			});
 	
